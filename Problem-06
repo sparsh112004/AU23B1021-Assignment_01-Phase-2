@@ -3,13 +3,28 @@ ccr = int(input("Current Conversion Rate: "))
 icr = int(input("Improved Conversion Rate: "))
 ic = int(input("Improvement Cost: "))
 epl = int(input("Expected Project Life: "))
-fgp = (asp * (icr / ccr) - asp) * (((1 + 0.05) ** 3) - 1) / 0.05 - ic * ((1 + 0.05) ** 3)
-print("Future Gain Profit: ", int(fgp))
-tgfi = (fgp / ((1+0.05) ** 3))
-print("Total Gain from Improvement:",int(tgfi))
-agfi = (tgfi / epl)
-print("Annual Gain from Improvement:",int(agfi))
-ar = (agfi / ic)
-print("Annual ROI:",int(ar))
-Tr = (tgfi / ic)
-print("Total ROI:",int(Tr))
+def fgp(asp,ccr,icr,ic,epl):
+    f = (asp * (icr / ccr) - asp) * (((1 + 0.05) * 3) - 1) / 0.05 - ic * ((1 + 0.05) * 3)
+    return f
+def tgfi(f):
+    t = (f / ((1+0.05) ** 3))
+    return t
+def agfi(t, epl):
+    ag = (t / epl)
+    return ag
+def aroi(ag, ic):
+    ar = (ag / ic)
+    return ar
+def troi(t, ic):
+    Tr = (t / ic)
+    return Tr
+f = fgp(asp, ccr, icr, ic, epl)
+t = tgfi(f)
+ag = agfi(t, epl)
+ar = aroi(ag, ic)
+Tr = troi(t, ic)
+print("Future Gain Profit: ", int(f))
+print("Total Gain from Improvement:",int(t))
+print("Annual Gain from Improvement:",int(ag))
+print("Annual ROI:",int(ar),":1")
+print("Total ROI:",int(Tr),":1")
